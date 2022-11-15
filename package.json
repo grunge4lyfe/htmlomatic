@@ -1,0 +1,31 @@
+{
+  "name": "htmlomatic",
+  "version": "0.0.0",
+  "description": "A small HTML templating tool.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "htmlomatic": "./bin/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/delightedcat/htmlomatic.git"
+  },
+  "keywords": [
+    "html",
+    "templating",
+    "cli"
+  ],
+  "author": "DelightedCat",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/delightedcat/htmlomatic/issues"
+  },
+  "homepage": "https://github.com/delightedcat/htmlomatic#readme",
+  "dependencies": {
+    "commander": "^9.4.1",
+    "glob": "^8.0.3"
+  }
+}
