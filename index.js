@@ -7,25 +7,12 @@ const splice = (string, start, length, replacement) => {
     return string.substr(0, start) + replacement + string.substr(start + length);
 };
 
-const read = file => {
-    try {
-        const data = fs.readFileSync(file, 'utf-8');
-        return data;
-    } catch (err) {
-        return err;
-    }
-};
-
-const write = (file, data) => {
-    fs.writeFileSync(file, data, 'utf-8');
-};
-
 const parse = (data, root) => {
     const pattern = /<!--(\s+)#include(\s+)(.*)(\s+)-->/g;
     let output = data;
 
     while (match = pattern.exec(output)) {
-        const include = read(path.join(root, match[3]));
+        const include = fs.readFileSync(path.join(root, match[3]), 'utf-8');
         output = splice(output, match.index, match[0].length, include);
     }
 
@@ -41,15 +28,17 @@ const htmlomatic = config => {
             if (err) throw err;
 
             for (const match of matches) {
-                const output = parse(read(match), path.resolve(match));
+
+                const template = fs.readFileSync(match, 'utf-8');
+                const output = parse(template, path.resolve(match));
 
                 if (!config.output) {
                     console.log(output);
                 } else {
                     const file = path.join(__dirname, config.output, path.basename(match));
-                    fs.mkdirSync(path.dirname(file), { recursive: true });
 
-                    write(file, output);
+                    fs.mkdirSync(path.dirname(file), { recursive: true });
+                    fs.writeFileSync(file, output, 'utf-8');
                 }
             }
         });
