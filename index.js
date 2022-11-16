@@ -3,8 +3,9 @@ const path = require('node:path');
 const assert = require('node:assert');
 const glob = require('glob');
 
-const splice = (string, start, length, replacement) => {
-    return string.substr(0, start) + replacement + string.substr(start + length);
+// A string extension function to allow string splicing
+String.prototype.splice = function(start, length, replacement) {
+    return this.substring(0, start) + replacement + this.substring(start + length);
 };
 
 const parse = (data, root) => {
@@ -13,7 +14,7 @@ const parse = (data, root) => {
 
     while (match = pattern.exec(output)) {
         const include = fs.readFileSync(path.join(root, match[3]), 'utf-8');
-        output = splice(output, match.index, match[0].length, include);
+        output = output.splice(match.index, match[0].length, include);
     }
 
     return output;
