@@ -20,7 +20,7 @@ const parse = (data, root) => {
     return output;
 };
 
-const htmlomatic = config => {
+const run = config => {
     assert(config);
     assert(config.files);
 
@@ -46,4 +46,5 @@ const htmlomatic = config => {
     }
 };
 
-module.exports = htmlomatic;
+module.exports.parse = parse;
+module.exports.run = run;
