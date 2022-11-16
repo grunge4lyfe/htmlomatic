@@ -3,5 +3,6 @@ const htmlomatic = require('./index');
 
 
 htmlomatic({
-    files: ['./example/*.html']
+    files: ['./example/*.html'],
+    output: './output',
 });

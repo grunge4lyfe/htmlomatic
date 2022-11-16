@@ -16,6 +16,10 @@ const read = file => {
     }
 };
 
+const write = (file, data) => {
+    fs.writeFileSync(file, data, 'utf-8');
+};
+
 const parse = (data, root) => {
     const pattern = /<!--(\s+)#include(\s+)(.*)(\s+)-->/g;
     let output = data;
@@ -38,10 +42,15 @@ const htmlomatic = config => {
 
             for (const match of matches) {
                 const output = parse(read(match), path.resolve(match));
-                // TODO: Write the output to a file
 
-                if (!config.output)
+                if (!config.output) {
                     console.log(output);
+                } else {
+                    const file = path.join(__dirname, config.output, path.basename(match));
+                    fs.mkdirSync(path.dirname(file), { recursive: true });
+
+                    write(file, output);
+                }
             }
         });
     }
