@@ -1,6 +1,5 @@
 const fs = require('node:fs');
 const path = require('node:path');
-const assert = require('node:assert');
 const glob = require('glob');
 
 // A string extension function to allow string splicing
@@ -21,10 +20,10 @@ const parse = (data, root) => {
 };
 
 const run = config => {
-    assert(config);
-    assert(config.files);
+    if (!config) return;
+    const files = config.files || [];
 
-    for (const file of config.files) {
+    for (const file of files) {
         glob(file, (err, matches) => {
             if (err) throw err;
 

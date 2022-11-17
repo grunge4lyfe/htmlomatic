@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 const package = require('../package.json');
-const { program } = require('commander');
 
 const htmlomatic = require('../index').run;
+const { program } = require('commander');
 
 program
     .name(package.name)
