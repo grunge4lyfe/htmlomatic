@@ -9,9 +9,14 @@ Then htmlomatic is what you're looking for!
 
 ### Getting Started
 
+The global command-line tool can be installed using the following command:
+```
+npm install -g htmlomatic
+```
+
 Templates are built by specifying a file search path and an output directory:
 ```
-htmlomatic ./example/*.html ./output/
+htmlomatic build ./example/*.html ./output/
 ```
 This will take all files with the `.html` extension in the `example` directory and process them as template files. The resulting files will be written to the `output` directory.
 
