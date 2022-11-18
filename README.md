@@ -65,4 +65,4 @@ The final result would look something like this:
 </body>
 </html>
 ```
-Don't forget to have a look at the [example project](https://github.com/delightedcat/htmlomatic/tree/trunk/example)!
+Don't forget to have a look at the [example project](https://github.com/grunge4lyfe/htmlomatic/tree/trunk/example)!
