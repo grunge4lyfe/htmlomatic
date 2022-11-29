@@ -1,11 +1,11 @@
 # htmlomatic
 
-A small command-line tool that allows templating in plain HTML files.
+A small command-line tool to use templating in plain HTML files.
 
 ### Overview
 
-Ever wished you could include one HTML file into another to build static websites more efficiently?
-Then htmlomatic is what you're looking for!
+Have you ever wanted to include some HTML in multiple files without copy-pasting?
+Then you've come to the right place!
 
 ### Getting Started
 
@@ -16,7 +16,7 @@ npm install -g htmlomatic
 
 Templates are built by specifying a file search path and an output directory:
 ```
-htmlomatic build ./example/*.html ./output/
+htmlomatic ./example/*.html -o ./output/
 ```
 This will take all files with the `.html` extension in the `example` directory and process them as template files. The resulting files will be written to the `output` directory.
 
@@ -25,23 +25,21 @@ A simple example of what a template file looks like:
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- #include ../partials/head.html -->
-    <title>Test</title>
+    <title>Example</title>
 </head>
 <body>
-    <header>
-        <li>
-            <a href="#">Button #1</a>
-        </li>
-    </header>
-    <!-- #include ../partials/footer.html -->
+    <!-- #include ../partials/header.html -->
+    <h1>Hello, world!</h1>
 </body>
 </html>
 ```
 The processor will collect all includes and replace them with the specified file's contents. For example, `partials/head.html` could look like this:
 ```html
-<meta charset="utf-8">
-<meta name="viewport" content="initial-width=device-width">
+<header>
+    <li>
+        <a href="#">Button #1</a>
+    </li>
+</header>
 ```
 
 The final result would look something like this:
@@ -49,9 +47,7 @@ The final result would look something like this:
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-width=device-width">
-    <title>Test</title>
+    <title>Example</title>
 </head>
 <body>
     <header>
@@ -59,10 +55,23 @@ The final result would look something like this:
             <a href="#">Button #1</a>
         </li>
     </header>
-    <footer>
-        Copyright &copy; Example
-    </footer>
+    <h1>Hello, world!</h1>
 </body>
 </html>
 ```
-Don't forget to have a look at the [example project](https://github.com/grunge4lyfe/htmlomatic/tree/trunk/example)!
+Don't forget to have a look at the [example project](https://github.com/grunge4lyfe/htmlomatic/tree/trunk/example) for a real-world example on how to structure your project!
+
+### Goals
+
+- Create a simple command-line interface (CLI) to easily generate static HTML pages.
+- Provide a small library to make it easy to use the parsing code in your own projects.
+- Provide easy-to-understand examples and basic documentation on how to use the tool.
+
+### Non-Goals
+
+- Create an advanced templating language with features such as control keywords (`if`, `for`, `while`, etc.)
+- Substitute existing templating languages as used in Express.js such as Pug and JSX.
+
+### License
+
+This project uses the [MIT License](https://github.com/grunge4lyfe/htmlomatic/blob/trunk/LICENSE) for all source code provided.
