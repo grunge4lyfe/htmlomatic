@@ -1,6 +1,6 @@
 {
   "name": "htmlomatic",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "A small command-line tool to use templating in plain HTML files.",
   "main": "index.js",
   "scripts": {
