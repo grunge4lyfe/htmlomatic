@@ -16,7 +16,9 @@
   "keywords": [
     "html",
     "templating",
-    "cli"
+    "cli",
+    "web",
+    "tool"
   ],
   "author": "grunge4lyfe",
   "license": "MIT",
