@@ -1,7 +1,7 @@
 {
   "name": "htmlomatic",
   "version": "1.0.2",
-  "description": "A small command-line tool that allows templating in plain HTML files.",
+  "description": "A small command-line tool to use templating in plain HTML files.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
