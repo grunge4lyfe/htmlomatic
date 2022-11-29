@@ -7,16 +7,12 @@ const { program } = require('commander');
 program
     .name(package.name)
     .description(package.description)
-    .version(package.version);
-
-program.command('build')
-    .description('Builds the template files and writes them to the specified output.')
-    .argument('<pattern>', 'The search pattern for template files (e.g. ./example/*.html)')
-    .argument('<output>', 'The output directory for built files.')
-    .action((pattern, output) => {
+    .version(package.version)
+    .option('-o,--output <output>', 'The directory to write built files to.')
+    .action(opts => {
         htmlomatic({
-            files: [pattern],
-            output: output
+            files: program.args,
+            output: opts.output,
         });
     });
 
