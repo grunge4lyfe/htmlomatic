@@ -21,13 +21,16 @@ const parse = (data, root) => {
 
 const run = config => {
     if (!config) return;
+
     const files = config.files || [];
+    const silent = config.silent || false;
 
     for (const file of files) {
         glob(file, (err, matches) => {
             if (err) throw err;
 
             for (const match of matches) {
+                if (!silent) console.log(`Processing input file ${match}...`);
 
                 const template = fs.readFileSync(match, 'utf-8');
                 const output = parse(template, path.resolve(match));
@@ -39,6 +42,8 @@ const run = config => {
 
                     fs.mkdirSync(path.dirname(file), { recursive: true });
                     fs.writeFileSync(file, output, 'utf-8');
+
+                    if (!silent) console.log(`Writing output file to ${file}`);
                 }
             }
         });
