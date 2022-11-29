@@ -30,18 +30,19 @@ const run = config => {
             if (err) throw err;
 
             for (const match of matches) {
-                if (!silent) console.log(`Processing input file ${match}...`);
+                const input = path.join(__dirname, match);
+                if (!silent) console.log(`Processing input file ${input}...`);
 
-                const template = fs.readFileSync(match, 'utf-8');
-                const output = parse(template, path.resolve(match));
+                const template = fs.readFileSync(input, 'utf-8');
+                const result = parse(template, path.resolve(match));
 
                 if (!config.output) {
-                    console.log(output);
+                    console.log(result);
                 } else {
                     const file = path.join(__dirname, config.output, path.basename(match));
 
                     fs.mkdirSync(path.dirname(file), { recursive: true });
-                    fs.writeFileSync(file, output, 'utf-8');
+                    fs.writeFileSync(file, result, 'utf-8');
 
                     if (!silent) console.log(`Writing output file to ${file}`);
                 }
