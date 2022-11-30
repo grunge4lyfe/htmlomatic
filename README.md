@@ -33,11 +33,14 @@ A simple example of what a template file looks like:
 </body>
 </html>
 ```
-The processor will collect all includes and replace them with the specified file's contents. For example, `partials/head.html` could look like this:
+The processor will collect all includes and replace them with the specified file's contents. For example, `partials/header.html` could look like this:
 ```html
 <header>
     <li>
-        <a href="#">Button #1</a>
+        <a href="index.html">Home</a>
+    </li>
+    <li>
+        <a href="blog.html">Blog</a>
     </li>
 </header>
 ```
@@ -52,7 +55,10 @@ The final result would look something like this:
 <body>
     <header>
         <li>
-            <a href="#">Button #1</a>
+            <a href="index.html">Home</a>
+        </li>
+        <li>
+            <a href="blog.html">Blog</a>
         </li>
     </header>
     <h1>Hello, world!</h1>
